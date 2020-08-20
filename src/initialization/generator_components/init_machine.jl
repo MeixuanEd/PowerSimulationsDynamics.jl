@@ -670,6 +670,19 @@ function initialize_mach_shaft!(
         machine_states[2] = sol_x0[5] #ed_p
         machine_states[3] = sol_x0[6] #ψ_kd
         machine_states[4] = sol_x0[7] #ψ_kq
+        #Update currents
+        V_dq = ri_dq(sol_x0[1]) * [V_R; V_I]
+        ψq_pp = γ_q1 * sol_x0[5] + sol_x0[7] * (1 - γ_q1)
+        ψd_pp = γ_d1 * sol_x0[4] + γ_d2 * (Xd_p - Xl) * sol_x0[6]
+        I_d =
+            (1.0 / (R^2 + Xq_pp * Xd_pp)) *
+            (-R * (V_dq[1] - ψq_pp) + Xq_pp * (-V_dq[2] + ψd_pp))
+        I_q =
+            (1.0 / (R^2 + Xq_pp * Xd_pp)) *
+            (Xd_pp * (V_dq[1] - ψq_pp) + R * (-V_dq[2] + ψd_pp))
+        I_R, I_I = dq_ri(sol_x0[1]) * [I_d; I_q]
+        get_inner_vars(device)[IR_gen_var] = I_R
+        get_inner_vars(device)[II_gen_var] = I_I
     end
 end
 
@@ -787,6 +800,16 @@ function initialize_mach_shaft!(
         machine_states[1] = sol_x0[4] #eq_p
         machine_states[2] = sol_x0[5] #ψ_kd
         machine_states[3] = sol_x0[6] #ψq_pp
+        #Update Currents
+        V_d, V_q = ri_dq(sol_x0[1]) * [V_R; V_I]
+        #Additional Fluxes
+        ψd_pp = γ_d1 * sol_x0[4] + γ_q1 * sol_x0[5]
+        #Currents
+        I_d = (1.0 / (R^2 + Xd_pp^2)) * (-R * (V_d + sol_x0[6]) + Xd_pp * (ψd_pp - V_q))
+        I_q = (1.0 / (R^2 + Xd_pp^2)) * (Xd_pp * (V_d + sol_x0[6]) + R * (ψd_pp - V_q))
+        I_R, I_I = dq_ri(sol_x0[1]) * [I_d; I_q]
+        get_inner_vars(device)[IR_gen_var] = I_R
+        get_inner_vars(device)[II_gen_var] = I_I
     end
 end
 

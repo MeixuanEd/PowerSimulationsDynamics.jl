@@ -31,6 +31,8 @@ Generator Inner Vars:
     ψd_var = 7
     ψq_var = 8
     Xad_Ifd_var = 9
+    IR_gen_var = 10
+    II_gen_var = 11
 end
 
 Base.to_index(ix::generator_inner_vars) = Int(ix)
