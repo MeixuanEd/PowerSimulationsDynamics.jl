@@ -138,7 +138,7 @@ end
 
 function initialize_avr!(
     device_states,
-    device::PSY.DynamicGenerator{M, S, PSY.AC1A, TG, P},
+    device::PSY.DynamicGenerator{M, S, PSY.ESAC1A, TG, P},
 ) where {M <: PSY.Machine, S <: PSY.Shaft, TG <: PSY.TurbineGov, P <: PSY.PSS}
     #Obtain Vf0 solved from Machine
     Vf0 = get_inner_vars(device)[Vf_var]

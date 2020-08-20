@@ -1,6 +1,7 @@
 function mdl_tg_ode!(
     device_states,
     output_ode,
+    ω_sys,
     device::PSY.DynamicGenerator{M, S, A, PSY.TGFixed, P},
 ) where {M <: PSY.Machine, S <: PSY.Shaft, A <: PSY.AVR, P <: PSY.PSS}
 
@@ -14,6 +15,7 @@ end
 function mdl_tg_ode!(
     device_states,
     output_ode,
+    ω_sys,
     device::PSY.DynamicGenerator{M, S, A, PSY.TGTypeI, P},
 ) where {M <: PSY.Machine, S <: PSY.Shaft, A <: PSY.AVR, P <: PSY.PSS}
 
@@ -70,6 +72,7 @@ end
 function mdl_tg_ode!(
     device_states,
     output_ode,
+    ω_sys,
     device::PSY.DynamicGenerator{M, S, A, PSY.TGTypeII, P},
 ) where {M <: PSY.Machine, S <: PSY.Shaft, A <: PSY.AVR, P <: PSY.PSS}
 
