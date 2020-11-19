@@ -16,6 +16,9 @@ function initialize_device!(
     #Initialize PSS
     initialize_pss!(device_states, static, dynamic_device)
 
+    #Set new inner vars = inner vars (as a copy)
+    get_new_inner_vars(dynamic_device) = deepcopy(get_inner_vars(dynamic_device))
+
     return device_states
 end
 
@@ -38,6 +41,9 @@ function initialize_device!(
     initialize_inner!(device_states, static, dynamic_device)
     #Initialize Converter
     initialize_converter!(device_states, static, dynamic_device)
+
+    #Set new inner vars = inner vars (as a copy)
+    get_new_inner_vars(dynamic_device) = deepcopy(get_inner_vars(dynamic_device))
     return device_states
 end
 

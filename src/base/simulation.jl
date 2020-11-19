@@ -257,6 +257,7 @@ function _attach_inner_vars!(
     ::Type{T} = Real,
 ) where {T <: Real}
     dynamic_device.ext[INNER_VARS] = zeros(T, 9)
+    dynamic_device.ext[NEW_INNER_VARS] = zeros(T, 9)
     return
 end
 
@@ -265,6 +266,7 @@ function _attach_inner_vars!(
     ::Type{T} = Real,
 ) where {T <: Real}
     dynamic_device.ext[INNER_VARS] = zeros(T, 14)
+    dynamic_device.ext[NEW_INNER_VARS] = zeros(T, 14)
     return
 end
 

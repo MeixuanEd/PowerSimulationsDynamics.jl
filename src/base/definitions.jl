@@ -93,6 +93,7 @@ const LOCAL_STATE_MAPPING = "local_state_mapping"
 const INPUT_PORT_MAPPING = "input_port_mapping"
 const PORTS = "ports"
 const INNER_VARS = "inner_vars"
+const NEW_INNER_VARS = "new_inner_vars"
 const CONTROL_REFS = "control_refs"
 
 const SIMULATION_ACCEPTED_KWARGS =

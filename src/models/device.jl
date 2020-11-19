@@ -19,6 +19,7 @@ function device!(
     sys_Sbase = PSY.get_base_power(sys)
     sys_f0 = PSY.get_frequency(sys)
     sys_ω = get_ω_sys(inputs)
+    #sys_ω = 1.0
 
     #Update Voltage data
     get_inner_vars(dynamic_device)[VR_gen_var] = voltage_r[1]
@@ -53,6 +54,7 @@ function device!(
         dynamic_device,
     )
 
+    get_inner_vars(dynamic_device) .= deepcopy(get_new_inner_vars(dynamic_device))
     return
 end
 

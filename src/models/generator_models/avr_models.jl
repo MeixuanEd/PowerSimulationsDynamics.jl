@@ -6,7 +6,7 @@ function mdl_avr_ode!(
 
     #TODO Change EMF name for Vf in PowerSystems
     #Update Vf voltage on inner vars
-    get_inner_vars(dynamic_device)[Vf_var] = PSY.get_Vf(PSY.get_avr(dynamic_device))
+    get_new_inner_vars(dynamic_device)[Vf_var] = PSY.get_Vf(PSY.get_avr(dynamic_device))
 
     return
 end
